@@ -87,10 +87,10 @@ def save_book_details(book, title, directory, session, headers):
 def download_book(book, directory, assets, session, headers):
 
     # scrub the title
-    title = book.xpath("@title")[0].replace("/","-").replace(" [eBook]","").replace(":", " -").strip()
+    title = book.xpath("@title")[0].replace("/","-").replace(" [eBook]","").replace(":", " -").strip().encode('utf8')
 
     # path to save the file
-    book_directory = os.path.join(directory, title)
+    book_directory = os.path.join(directory, title).encode('utf8')
 
     # create the directory if doesn't exist
     if not os.path.exists(book_directory):
